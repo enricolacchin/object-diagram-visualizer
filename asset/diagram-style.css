@@ -1,0 +1,62 @@
+/* Base styles for the diagram */
+.diagram {
+  font-family: "Roboto Mono", monospace;
+}
+
+/* Style for text elements */
+.diagram text {
+  font-size: 14px;
+  fill: #812815; /* Brown color for text */
+  dominant-baseline: middle; /* Align text vertically to the middle */
+  text-anchor: middle; /* Center text horizontally */
+}
+
+/* Style for rectangles (e.g., objects in the diagram) */
+.diagram rect {
+  fill: #fcf3cf; /* Light yellow fill */
+  stroke: #f1c40f; /* Dark yellow stroke */
+  stroke-width: 2; /* Border thickness */
+}
+
+/* Style for circles (e.g., references in the diagram) */
+.diagram circle {
+  fill: #f1c40f; /* Yellow fill for circles */
+}
+
+/* Style for lines and links */
+.diagram path {
+  stroke: #f1c40f; /* Dark yellow color for lines */
+  fill: none; /* Ensure lines are not filled */
+  stroke-width: 2;
+}
+
+/* Style for labels inside the diagram */
+.diagram .refLabel,
+.diagram .typeLabel,
+.diagram .contentLabel {
+  text-anchor: middle;
+  font-family: "Roboto Mono", monospace;
+  fill: #812815; /* Brown color for labels */
+}
+
+/* Ensuring visibility of zone labels */
+.diagram .zoneLabel {
+  fill: #999999;
+  font-size: 85%;
+}
+
+/* Specific style for objects representing null */
+.diagram rect.null-object {
+  fill: #d6d6d6 !important; /* Gray fill for null objects */
+  stroke: #999999 !important; /* Dark gray stroke */
+}
+
+/* Specific style for links to null objects */
+.diagram path.null-link {
+  stroke: #999999 !important; /* Dark gray color for links */
+}
+
+/* Style for text inside null objects */
+.diagram text.null-text {
+  fill: #812815; /* Brown color for text inside null objects */
+}
