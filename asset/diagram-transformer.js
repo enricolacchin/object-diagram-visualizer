@@ -1,15 +1,15 @@
-var DiagramTransformer = {
+const DiagramTransformer = {
     transform: function (code) {
-        var statements = code.split("\n");
-        var itemsCode = "";
-        var minX = Number.MAX_VALUE;
-        var maxX = -Number.MAX_VALUE;
-        var minY = Number.MAX_VALUE;
-        var maxY = -Number.MAX_VALUE;
-        for (var i = 0; i < statements.length; i++) {
-            var statement = statements[i].trim();
+        const statements = code.split("\n");
+        let itemsCode = "";
+        let minX = Number.MAX_VALUE;
+        let maxX = -Number.MAX_VALUE;
+        let minY = Number.MAX_VALUE;
+        let maxY = -Number.MAX_VALUE;
+        for (let i = 0; i < statements.length; i++) {
+            const statement = statements[i].trim();
             if (statement) {
-                var result = eval("this.shapes." + statement);
+                const result = eval("this.shapes." + statement);
                 itemsCode += result.code;
                 minX = Math.min(result.minX, minX);
                 maxX = Math.max(result.maxX, maxX);
@@ -17,7 +17,7 @@ var DiagramTransformer = {
                 maxY = Math.max(result.maxY, maxY);
             }
         }
-        var processedCode = "";
+        let processedCode = "";
         processedCode +=
             '<svg width="' +
             (maxX - minX + 2 * this.shapes.constants.padding) +
@@ -36,11 +36,10 @@ var DiagramTransformer = {
         return processedCode;
     },
     transformAll: function (parent, className) {
-        var elements = parent.getElementsByClassName(className);
-        for (var i = 0; i < elements.length; i++) {
-            var code = elements[i].children[0].textContent;
-            var processed = this.transform(code);
-            elements[i].innerHTML = processed;
+        const elements = parent.getElementsByClassName(className);
+        for (let i = 0; i < elements.length; i++) {
+            const code = elements[i].children[0].textContent;
+            elements[i].innerHTML = this.transform(code);
         }
     },
     shapes: {
@@ -56,7 +55,7 @@ var DiagramTransformer = {
         },
         ref: function (x, y, label, className) {
             className = className ? className : "";
-            var code = "";
+            let code = "";
             code +=
                 '<circle cx="' +
                 x +
@@ -102,7 +101,7 @@ var DiagramTransformer = {
         },
         obj: function (x, y, w, h, typeLabel, contentLabel, className) {
             className = className ? className : "";
-            var code = "";
+            let code = "";
             code +=
                 '<rect x="' +
                 x +
@@ -155,7 +154,7 @@ var DiagramTransformer = {
         },
         cyl: function (x, y, w, h, label, className) {
             className = className ? className : "";
-            var code = "";
+            let code = "";
             code += "<g>";
             code +=
                 '<path d="M ' +
@@ -224,7 +223,7 @@ var DiagramTransformer = {
         arrow: function (x, y, w, h, a, className) {
             className = className ? className : "";
             a = a ? a : 0;
-            var code = "";
+            let code = "";
             code +=
                 '<g transform="rotate(' +
                 a +
@@ -262,7 +261,7 @@ var DiagramTransformer = {
                 'z" class="arrow ' +
                 className +
                 '"/></g>';
-            var r = Math.sqrt((w * w) / 4 + (h * h) / 4);
+            const r = Math.sqrt((w * w) / 4 + (h * h) / 4);
             return {
                 minX: x - r,
                 maxX: x + r,
@@ -273,9 +272,9 @@ var DiagramTransformer = {
         },
         array: function (x, y, w, h, n, cursor, eos, className) {
             className = className ? className : "";
-            var code = "";
+            let code = "";
             code += "<g>";
-            for (var i = 0; i < n; i++) {
+            for (let i = 0; i < n; i++) {
                 code +=
                     '<rect x="' +
                     (x + w * i) +
@@ -287,7 +286,7 @@ var DiagramTransformer = {
                     h +
                     '"' +
                     '" class="array ' +
-                    (i == eos ? "eos " : "") +
+                    (i === eos ? "eos " : "") +
                     className +
                     '"/>';
             }
@@ -345,7 +344,7 @@ var DiagramTransformer = {
         },
         zone: function (x, y, w, h, label, className) {
             className = className ? className : "";
-            var code = "";
+            let code = "";
             code +=
                 '<rect x="' +
                 x +
@@ -383,7 +382,7 @@ var DiagramTransformer = {
         },
         text: function (x, y, label, className) {
             className = className ? className : "";
-            var code = "";
+            let code = "";
             if (label) {
                 code +=
                     '<text x="' +
@@ -406,24 +405,24 @@ var DiagramTransformer = {
         },
         link: function (coords, className) {
             className = className ? className : "";
-            var minX = Number.MAX_VALUE;
-            var maxX = -Number.MAX_VALUE;
-            var minY = Number.MAX_VALUE;
-            var maxY = -Number.MAX_VALUE;
-            var code = "";
+            let minX = Number.MAX_VALUE;
+            let maxX = -Number.MAX_VALUE;
+            let minY = Number.MAX_VALUE;
+            let maxY = -Number.MAX_VALUE;
+            let code = "";
             code += "<g>";
             code += '<path d="';
-            for (var i = 0; i < Math.floor(coords.length / 2); i++) {
-                var command = "L";
-                if (i == 0) {
+            for (let i = 0; i < Math.floor(coords.length / 2); i++) {
+                let command = "L";
+                if (i === 0) {
                     command = "M";
                 }
                 if (!isFinite(coords[i * 2]) && coords[i * 2].startsWith("j")) {
-                    var lastX = parseFloat(coords[(i - 1) * 2]);
-                    var lastY = parseFloat(coords[(i - 1) * 2 + 1]);
-                    var radius = parseFloat(coords[i * 2].substring(1));
-                    var direction = coords[i * 2 + 1];
-                    if (direction == "n") {
+                    const lastX = parseFloat(coords[(i - 1) * 2]);
+                    const lastY = parseFloat(coords[(i - 1) * 2 + 1]);
+                    const radius = parseFloat(coords[i * 2].substring(1));
+                    const direction = coords[i * 2 + 1];
+                    if (direction === "n") {
                         code +=
                             "A" +
                             radius +
@@ -433,7 +432,7 @@ var DiagramTransformer = {
                             lastX +
                             "," +
                             (lastY - 2 * radius);
-                    } else if (direction == "e") {
+                    } else if (direction === "e") {
                         code +=
                             "A" +
                             radius +
@@ -443,7 +442,7 @@ var DiagramTransformer = {
                             (lastX + 2 * radius) +
                             "," +
                             lastY;
-                    } else if (direction == "s") {
+                    } else if (direction === "s") {
                         code +=
                             "A" +
                             radius +
@@ -453,7 +452,7 @@ var DiagramTransformer = {
                             lastX +
                             "," +
                             (lastY + 2 * radius);
-                    } else if (direction == "w") {
+                    } else if (direction === "w") {
                         code +=
                             "A" +
                             radius +
@@ -465,8 +464,9 @@ var DiagramTransformer = {
                             lastY;
                     }
                 } else {
-                    var x = parseFloat(coords[i * 2]);
-                    var y = parseFloat(coords[i * 2 + 1]);
+
+                    const x = parseFloat(coords[i * 2]);
+                    const y = parseFloat(coords[i * 2 + 1]);
                     minX = Math.min(minX, x);
                     maxX = Math.max(maxX, x);
                     minY = Math.min(minY, y);
@@ -475,7 +475,7 @@ var DiagramTransformer = {
                 }
             }
             code += '" class="link ' + className + '"/>';
-            if (coords[coords.length - 1] == ">") {
+            if (coords[coords.length - 1] === ">") {
                 code +=
                     '<g transform="rotate(' +
                     (Math.atan2(

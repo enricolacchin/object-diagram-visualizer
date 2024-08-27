@@ -1,1 +1,21 @@
-<svg width="30" height="50" role="img"><g transform="translate(15,35)"><circle cx="0" cy="0" r="10" class="ref "></circle><text x="0" y="-20" class="refLabel ">s</text></g></svg>
+<svg width="30" height="50" role="img"><style>
+            svg {
+                fill: none;
+            }
+            text {
+                fill: #812815;
+            }
+            rect {
+                fill: #fcf3cf;
+                stroke: #f1c40f;
+                stroke-width: 2;
+            }
+            circle {
+                fill: #f1c40f;
+            }
+            path {
+                stroke: #f1c40f;
+                stroke-width: 2;
+                fill: none;
+            }
+        </style><g transform="translate(15,35)"><circle cx="0" cy="0" r="10" class="ref "></circle><text x="0" y="-20" class="refLabel ">s</text></g></svg>

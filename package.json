@@ -1,16 +1,19 @@
 {
   "name": "object-diagram-visualizer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A tool to generate SVG and PNG diagrams from textual representations using Puppeteer.",
+  "main": "generateDiagrams.js",
   "scripts": {
+    "start": "node generateDiagrams.js",
+    "generate": "node generateDiagrams.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "fs-extra": "^11.2.0",
     "puppeteer": "^23.1.1"
-  }
+  },
+  "author": "Enrico Lacchin",
+  "license": "CC-BY-NC-ND-4.0",
+  "licenseFilename": "LICENSE"
 }
