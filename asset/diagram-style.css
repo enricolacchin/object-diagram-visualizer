@@ -13,14 +13,48 @@
 
 /* Style for rectangles (e.g., objects in the diagram) */
 .diagram rect {
-  fill: #fcf3cf; /* Light yellow fill */
-  stroke: #f1c40f; /* Dark yellow stroke */
-  stroke-width: 2; /* Border thickness */
+  fill: #ffffff; /* White fill for rectangles */
+  stroke: #000000; /* Black stroke for rectangles */
+  stroke-width: 1; /* Thinner border for rectangles */
+}
+
+/* Style for arrays */
+.diagram .array {
+  fill: #ffffff; /* White fill for array elements */
+  stroke: #000000; /* Black stroke for array elements */
+  stroke-width: 2; /* Standard border for array elements */
+}
+
+/* Style for the end of the array (eos) */
+.diagram .array.eos {
+  fill: #5555ee; /* Blue fill for the end element */
+  stroke: #000000; /* Black stroke for the end element */
+  stroke-width: 2; /* Standard border for the end element */
+}
+
+/* Style for cursors */
+.diagram .cursor {
+  fill: #aaaaee; /* Blue fill for the cursor */
+  stroke: #5555ee; /* Blue stroke for the cursor */
+}
+
+/* Style for cylinders (e.g., Device, Stream) */
+.diagram .cyl {
+  fill: #d9d9d9; /* Slightly darker gray fill for cylinders */
+  stroke: #777777; /* Darker gray stroke */
+  stroke-width: 1; /* Thinner border for cylinders */
+  filter: drop-shadow(2px 2px 3px #aaaaaa); /* Add shadow for 3D effect */
 }
 
 /* Style for circles (e.g., references in the diagram) */
 .diagram circle {
   fill: #f1c40f; /* Yellow fill for circles */
+}
+
+/* Style for arrows */
+.diagram .arrow {
+  fill: #eeaaaa; /* Red fill for arrows */
+  stroke: #ee5555; /* Red stroke for arrows */
 }
 
 /* Style for lines and links */
@@ -30,10 +64,26 @@
   stroke-width: 2;
 }
 
+/* Style for labels inside cylinders */
+.diagram .contentLabel {
+  fill: #4a4a4a; /* Darker gray color for text inside cylinders */
+  font-size: 14px; /* Slightly smaller font size */
+  text-anchor: middle; /* Center text horizontally */
+  dominant-baseline: middle; /* Align text vertically */
+}
+
+/* Style for the 'byte[]' label */
+.diagram .byteLabel {
+  fill: #812815; /* Dark red color for byte[] label */
+  font-size: 16px; /* Adjust font size for emphasis */
+  text-anchor: middle; /* Center text horizontally */
+  dominant-baseline: middle; /* Align text vertically */
+  font-weight: bold; /* Make the label bold for emphasis */
+}
+
 /* Style for labels inside the diagram */
 .diagram .refLabel,
-.diagram .typeLabel,
-.diagram .contentLabel {
+.diagram .typeLabel {
   text-anchor: middle;
   font-family: "Roboto Mono", monospace;
   fill: #812815; /* Brown color for labels */
@@ -59,4 +109,61 @@
 /* Style for text inside null objects */
 .diagram text.null-text {
   fill: #812815; /* Brown color for text inside null objects */
+}
+
+/* Modified style for invisible text */
+.diagram text.invisible {
+  opacity: 0.4; /* Make text 40% visible */
+}
+
+/* Style for partially transparent circles and text */
+.diagram .ref.invisible {
+  fill-opacity: 0.4; /* Make the reference circles semi-transparent */
+  stroke-opacity: 0.4;
+}
+
+/* Style for partially transparent paths */
+.diagram path.invisible {
+  fill-opacity: 0.4; /* Make paths semi-transparent */
+  stroke-opacity: 0.4;
+}
+
+/* Style for invisible labels */
+.diagram .refLabel.invisible {
+  fill: #812815;
+  opacity: 0.4; /* Make the text semi-transparent */
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
+/* Style for the main zone label */
+.diagram .zoneLabel.main {
+  fill: #555555; /* Dark gray text color */
+  font-size: 16px; /* Slightly larger font for the main title */
+  font-weight: normal; /* Normal font weight */
+  dominant-baseline: text-before-edge; /* Align to top */
+  text-anchor: start; /* Align to the left */
+}
+
+/* Style for section titles like 'Stack' and 'Heap' */
+.diagram .zoneLabel.section {
+  fill: #555555; /* Dark gray text color */
+  font-size: 16px; /* Medium font size */
+  font-weight: normal;
+  text-anchor: start; /* Align to the left */
+}
+
+/* Style for smaller zones like 'main()' */
+.diagram .zoneLabel.code {
+  fill: #555555; /* Dark gray text color */
+  font-size: 14px; /* Smaller font size for code zones */
+  font-style: italic; /* Italic font style */
+  text-anchor: start; /* Align to the left */
+}
+
+/* Style for the zones (borders and background) */
+.diagram .zone {
+  fill: none;
+  stroke: #aaaaaa; /* Light gray border */
+  stroke-width: 1;
+  stroke-dasharray: 4, 2; /* Dashed border */
 }
