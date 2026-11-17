@@ -18,12 +18,15 @@ const DiagramTransformer = {
             }
         }
         let processedCode = "";
+        const width = maxX - minX + 2 * this.shapes.constants.padding;
+        const height = maxY - minY + 2 * this.shapes.constants.padding;
         processedCode +=
-            '<svg width="' +
-            (maxX - minX + 2 * this.shapes.constants.padding) +
-            '" height="' +
-            (maxY - minY + 2 * this.shapes.constants.padding) +
-            '" role="img">';
+            '<svg xmlns="http://www.w3.org/2000/svg" ' +
+            'xmlns:xlink="http://www.w3.org/1999/xlink" ' +
+            'width="' + width + '" ' +
+            'height="' + height + '" ' +
+            'viewBox="0 0 ' + width + ' ' + height + '" ' +
+            'role="img">';
         processedCode +=
             '<g transform="translate(' +
             (-minX + this.shapes.constants.padding) +
@@ -36,7 +39,10 @@ const DiagramTransformer = {
         return processedCode;
     },
     transformAll: function (parent, className) {
-        const elements = parent.getElementsByClassName(className);
+        // getElementsByClassName returns a live collection: take a static copy before
+        // rewriting innerHTML, otherwise generated markup carrying the same class would
+        // be appended to the list being iterated and the loop would never end.
+        const elements = Array.prototype.slice.call(parent.getElementsByClassName(className));
         for (let i = 0; i < elements.length; i++) {
             const code = elements[i].children[0].textContent;
             elements[i].innerHTML = this.transform(code);
@@ -284,7 +290,6 @@ const DiagramTransformer = {
                     w +
                     '" height="' +
                     h +
-                    '"' +
                     '" class="array ' +
                     (i === eos ? "eos " : "") +
                     className +

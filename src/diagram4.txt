@@ -1,0 +1,2 @@
+obj(80,0,150,40,'String','"Content1"')
+obj(80,80,150,40,'String','"Content2"')
